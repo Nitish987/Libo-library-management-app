@@ -1,0 +1,111 @@
+<resources>
+    <string name="app_name">Libo</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="logout">Logout</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
+    <string name="username">username</string>
+    <string name="name">Name</string>
+    <string name="libraryId">Library ID</string>
+    <string name="department">Department</string>
+    <string name="phone">Phone</string>
+    <string name="address">Address</string>
+    <string name="your_profile">Your Profile</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="search_for_library">Search for Library</string>
+    <string name="your_library">Your Library</string>
+    <string name="college">College</string>
+    <string name="late_book_fine_per_day">Late Book Fine per day</string>
+    <string name="create_library">Create Library</string>
+    <string name="cancel">Cancel</string>
+    <string name="library_name">Library Name</string>
+    <string name="college_name">College Name</string>
+    <string name="my_library">My Library</string>
+    <string name="recently_added_books">Recently added Books</string>
+    <string name="add_books">Add Book to Library</string>
+    <string name="update_library">Update Library</string>
+    <string name="new_book">New Book</string>
+    <string name="book_name">Book name</string>
+    <string name="book_author">Book Author</string>
+    <string name="book_isbn_no">Book ISBN no.</string>
+    <string name="book_quantity">Book Quantity</string>
+    <string name="book_publication">Book Publication</string>
+    <string name="book_number">Book Number</string>
+    <string name="book_class">Book Class (eg: semester 1)</string>
+    <string name="create_book">Create Book</string>
+    <string name="add_book_in_pdf_format">Add book in PDF Format</string>
+    <string name="book_category">Book Category</string>
+    <string name="search_book">Search Book</string>
+    <string name="search_library">Search Library</string>
+    <string name="issue_book">Issue Book</string>
+    <string name="issue_time">Issue Time</string>
+    <string name="submit_time">Submit Time</string>
+    <string name="notification">Notification</string>
+    <string name="handover">handover</string>
+    <string name="see_book_details">see book details</string>
+    <string name="issuer_details">issuer details</string>
+    <string name="reject">Reject</string>
+    <string name="issuer_profile">Issuer Profile</string>
+    <string name="read_book_pdf">Download Book PDF</string>
+    <string name="return_book">Book Returned</string>
+    <string name="add_member">Add Member</string>
+    <string name="recent">Recent</string>
+    <string name="members">Members</string>
+    <string-array name="book_types">
+        <item>Select Book Category</item>
+        <item>Arts and Music</item>
+        <item>Biographies</item>
+        <item>Biology</item>
+        <item>Business</item>
+        <item>Chemistry</item>
+        <item>Comics</item>
+        <item>Computer and Tech</item>
+        <item>Cooking</item>
+        <item>Edu and Reference</item>
+        <item>Electrical</item>
+        <item>Electronics</item>
+        <item>Entertainment</item>
+        <item>Health and Fitness</item>
+        <item>History</item>
+        <item>Hobbies and crafts</item>
+        <item>Home and Garden</item>
+        <item>Horror</item>
+        <item>Kids</item>
+        <item>Literature and Fiction</item>
+        <item>Mathematics</item>
+        <item>Mechanical</item>
+        <item>Medical</item>
+        <item>Mysteries</item>
+        <item>Parenting</item>
+        <item>Physics</item>
+        <item>Religion</item>
+        <item>Science</item>
+        <item>Self-Help</item>
+        <item>Social Sciences</item>
+        <item>Sports</item>
+        <item>Teen</item>
+        <item>Travel</item>
+        <item>Others</item>
+    </string-array>
+    <string-array name="book_issue_time">
+        <item>Issue for 1 day</item>
+        <item>Issue for 1 week</item>
+        <item>Issue for 1 month</item>
+        <item>Issue for 2 month</item>
+        <item>Issue for 3 month</item>
+        <item>Issue for 4 month</item>
+        <item>Issue for 5 month</item>
+        <item>Issue for 6 month</item>
+        <item>Issue for 1 year</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="member">Member</string>
+    <string name="remove_member">Remove Member</string>
+    <string name="issued_books">Issued Books</string>
+    <string name="search_with_username_or_email">Search with username or email</string>
+</resources>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".sheet.IssueAcceptSheet">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/book_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="@string/book_name"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/book_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/book_author"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/book_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/book_class"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/issue_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/issue_time"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/submit_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_time"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/library_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/libraryId"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/user_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/issuer_details"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/handover"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/handover"
+            android:paddingHorizontal="10dp"
+            android:layout_marginVertical="5dp" />
+
+        <Button
+            android:id="@+id/reject"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="@string/reject"
+            android:paddingHorizontal="10dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_marginVertical="5dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
