@@ -5,15 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".tabs.RecentTab">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recent_book_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/no_data"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/empty" />
+
+    </RelativeLayout>
 
 </FrameLayout>

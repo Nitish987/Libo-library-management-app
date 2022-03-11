@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20sp"
     android:orientation="vertical"
+    android:padding="20sp"
     tools:context=".SearchBookActivity">
 
     <TextView
@@ -25,12 +25,12 @@
         <EditText
             android:id="@+id/search_text"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
             android:hint="@string/search_book"
-            android:inputType="text"
-            android:layout_marginEnd="10dp" />
+            android:inputType="text" />
 
         <ImageButton
             android:id="@+id/search_button"
@@ -46,12 +46,26 @@
         android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:entries="@array/book_types"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:entries="@array/book_types" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/books_rv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/books_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/no_data"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/empty" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

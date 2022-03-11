@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -26,6 +28,7 @@ public class AdminRecentActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EditText searchTxt;
     private ImageButton searchBtn;
+    private ImageView noData;
 
     private String libraryId = null;
 
@@ -38,6 +41,7 @@ public class AdminRecentActivity extends AppCompatActivity {
 
         searchTxt = findViewById(R.id.search_text);
         searchBtn = findViewById(R.id.search_btn);
+        noData = findViewById(R.id.no_data);
 
         recyclerView = findViewById(R.id.recent_book_rv);
         recyclerView.setHasFixedSize(true);
@@ -81,6 +85,13 @@ public class AdminRecentActivity extends AppCompatActivity {
                 holder.view.setOnClickListener(view -> {
                     AdminBookReturnSheet.newInstance(model).show(getSupportFragmentManager(), "DIALOG");
                 });
+            }
+
+            @NonNull
+            @Override
+            public Recent getItem(int position) {
+                if (position >= 0) noData.setVisibility(View.GONE);
+                return super.getItem(position);
             }
 
             @NonNull

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class SearchBookActivity extends AppCompatActivity {
     private ImageButton searchButton;
     private EditText queryText;
     private Spinner category;
+    private ImageView noData;
 
     private String libraryID;
 
@@ -46,6 +48,7 @@ public class SearchBookActivity extends AppCompatActivity {
         searchButton = findViewById(R.id.search_button);
         category = findViewById(R.id.category);
         booksRV = findViewById(R.id.books_rv);
+        noData = findViewById(R.id.no_data);
 
         booksRV.setLayoutManager(new LinearLayoutManager(this));
         booksRV.setHasFixedSize(true);
@@ -97,6 +100,13 @@ public class SearchBookActivity extends AppCompatActivity {
                 holder.view.setOnClickListener(view -> {
                     BookDetailSheet.getInstance(model).show(getSupportFragmentManager(), "DIALOG");
                 });
+            }
+
+            @NonNull
+            @Override
+            public Book getItem(int position) {
+                if (position >= 0) noData.setVisibility(View.GONE);
+                return super.getItem(position);
             }
 
             @NonNull

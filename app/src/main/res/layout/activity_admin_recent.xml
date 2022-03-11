@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminRecentActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".AdminRecentActivity">
 
     <LinearLayout
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20sp">
+        android:layout_margin="20sp"
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/search_text"
@@ -33,9 +33,23 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recent_book_rv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recent_book_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/no_data"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/empty" />
+
+    </RelativeLayout>
+
 
 </LinearLayout>

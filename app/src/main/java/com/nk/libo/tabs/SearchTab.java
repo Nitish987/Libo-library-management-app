@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -36,6 +37,7 @@ public class SearchTab extends Fragment {
     private ImageButton searchBtn;
     private FloatingActionButton addLibraryBtn;
     private RecyclerView recyclerView;
+    private ImageView noData;
 
     private List<Library> libraries;
 
@@ -53,6 +55,7 @@ public class SearchTab extends Fragment {
         searchBtn = view.findViewById(R.id.search_btn);
         addLibraryBtn = view.findViewById(R.id.add_Library);
         recyclerView = view.findViewById(R.id.library_rv);
+        noData = view.findViewById(R.id.no_data);
 
         recyclerView.hasFixedSize();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -80,7 +83,11 @@ public class SearchTab extends Fragment {
                 for (DocumentSnapshot snap: snapshots) {
                     libraries.add((Library) snap.toObject(Library.class));
                 }
-                recyclerView.setAdapter(new LibraryAdapter(libraries));
+                LibraryAdapter adapter = new LibraryAdapter(libraries);
+                recyclerView.setAdapter(adapter);
+
+                if (adapter.getItemCount() == 0) noData.setVisibility(View.VISIBLE);
+                else noData.setVisibility(View.GONE);
             }
 
             @Override

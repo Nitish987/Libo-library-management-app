@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -24,6 +25,7 @@ import com.nk.libo.sheet.BookReturnSheet;
 public class RecentTab extends Fragment {
 
     private RecyclerView recyclerView;
+    private ImageView noData;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class RecentTab extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tab_recent, container, false);
 
+        noData = view.findViewById(R.id.no_data);
         recyclerView = view.findViewById(R.id.recent_book_rv);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -63,6 +66,13 @@ public class RecentTab extends Fragment {
                 holder.view.setOnClickListener(view -> {
                     BookReturnSheet.newInstance(model).show(getParentFragmentManager(), "DIALOG");
                 });
+            }
+
+            @NonNull
+            @Override
+            public Recent getItem(int position) {
+                if (position >= 0) noData.setVisibility(View.GONE);
+                return super.getItem(position);
             }
 
             @NonNull

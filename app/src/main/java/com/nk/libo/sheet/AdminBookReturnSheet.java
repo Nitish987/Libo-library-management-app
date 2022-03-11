@@ -21,6 +21,7 @@ import com.nk.libo.ViewProfileActivity;
 import com.nk.libo.auth.Auth;
 import com.nk.libo.db.Database;
 import com.nk.libo.db.model.Book;
+import com.nk.libo.db.model.Library;
 import com.nk.libo.db.model.Recent;
 import com.nk.libo.utils.Assure;
 import com.nk.libo.utils.FutureDate;
@@ -37,7 +38,7 @@ public class AdminBookReturnSheet extends BottomSheetDialogFragment {
     private Button returnBookBtn, issuerDetails;
 
     private Recent recent;
-    private int bookIssueCount = 0;
+    private int bookIssueCount = 0, book_fine = 0;
 
     public static AdminBookReturnSheet newInstance(Recent recent) {
         AdminBookReturnSheet fragment = new AdminBookReturnSheet();
@@ -75,7 +76,20 @@ public class AdminBookReturnSheet extends BottomSheetDialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        load();
+        Database.read("library/" + recent.getLib(), new Library(), new Assure() {
+            @Override
+            public <T> void accept(T result) {
+                Library library = (Library) result;
+                book_fine = library.getLateFine();
+
+                load();
+            }
+
+            @Override
+            public void reject(String error) {
+                Toast.makeText(getContext(), "something went wrong!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         issuerDetails.setOnClickListener(view -> {
             Intent intent = new Intent(getContext(), ViewProfileActivity.class);
@@ -85,7 +99,7 @@ public class AdminBookReturnSheet extends BottomSheetDialogFragment {
 
         returnBookBtn.setOnClickListener(view -> {
             Thread forUser = new Thread(() -> {
-                delete("user/" + recent.getBy() + "/recent/" + recent.getId(),"returned.");
+                delete("user/" + recent.getBy() + "/recent/" + recent.getId(), "returned.");
             });
 
             Map<String, Object> map = new HashMap<>();
@@ -93,7 +107,7 @@ public class AdminBookReturnSheet extends BottomSheetDialogFragment {
             Thread forBook = new Thread(() -> Database.update("library/" + recent.getLib() + "/book/" + recent.getBookId(), map, new Assure() {
                 @Override
                 public <T> void accept(T result) {
-                    delete("library/" + recent.getLib() + "/recent/" + recent.getId(),"returned.");
+                    delete("library/" + recent.getLib() + "/recent/" + recent.getId(), "returned.");
                 }
 
                 @Override
@@ -118,7 +132,7 @@ public class AdminBookReturnSheet extends BottomSheetDialogFragment {
             LocalDate d1 = LocalDate.parse(FutureDate.toDate(System.currentTimeMillis()), DateTimeFormatter.ISO_LOCAL_DATE);
             LocalDate d2 = LocalDate.parse(FutureDate.toDate(recent.getSubmitTime()), DateTimeFormatter.ISO_LOCAL_DATE);
             Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
-            f = "Fine : " + Math.abs(5 * diff.toDays());
+            f = "Fine : " + Math.abs(book_fine * diff.toDays());
         } else {
             f = "Fine : No Fine";
         }

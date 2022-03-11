@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -22,6 +24,7 @@ import com.nk.libo.utils.FutureDate;
 public class LibraryNotificationActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private ImageView noData;
 
     private String libraryId;
 
@@ -34,6 +37,8 @@ public class LibraryNotificationActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        noData = findViewById(R.id.no_data);
 
         recyclerView = findViewById(R.id.library_notification_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -65,6 +70,13 @@ public class LibraryNotificationActivity extends AppCompatActivity {
                 holder.view.setOnClickListener(view -> {
                     IssueAcceptSheet.getInstance(model).show(getSupportFragmentManager(), "DIALOG");
                 });
+            }
+
+            @NonNull
+            @Override
+            public Issue getItem(int position) {
+                if (position >= 0) noData.setVisibility(View.GONE);
+                return super.getItem(position);
             }
 
             @NonNull

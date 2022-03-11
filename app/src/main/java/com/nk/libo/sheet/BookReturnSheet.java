@@ -20,6 +20,7 @@ import com.nk.libo.ViewProfileActivity;
 import com.nk.libo.auth.Auth;
 import com.nk.libo.db.Database;
 import com.nk.libo.db.model.Book;
+import com.nk.libo.db.model.Library;
 import com.nk.libo.db.model.Recent;
 import com.nk.libo.utils.Assure;
 import com.nk.libo.utils.FutureDate;
@@ -37,6 +38,7 @@ public class BookReturnSheet extends BottomSheetDialogFragment {
 
     private Recent recent;
     private String bookPdfUrl = null;
+    private int book_fine = 0;
 
     public static BookReturnSheet newInstance(Recent recent) {
         BookReturnSheet fragment = new BookReturnSheet();
@@ -73,7 +75,20 @@ public class BookReturnSheet extends BottomSheetDialogFragment {
     @Override
     public void onStart() {
         super.onStart();
-        load();
+        Database.read("library/" + recent.getLib(), new Library(), new Assure() {
+            @Override
+            public <T> void accept(T result) {
+                Library library = (Library) result;
+                book_fine = library.getLateFine();
+
+                load();
+            }
+
+            @Override
+            public void reject(String error) {
+                Toast.makeText(getContext(), "something went wrong!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         readBookBtn.setOnClickListener(view -> {
             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(bookPdfUrl));
@@ -92,7 +107,7 @@ public class BookReturnSheet extends BottomSheetDialogFragment {
             LocalDate d1 = LocalDate.parse(FutureDate.toDate(System.currentTimeMillis()), DateTimeFormatter.ISO_LOCAL_DATE);
             LocalDate d2 = LocalDate.parse(FutureDate.toDate(recent.getSubmitTime()), DateTimeFormatter.ISO_LOCAL_DATE);
             Duration diff = Duration.between(d1.atStartOfDay(), d2.atStartOfDay());
-            f = "Fine : " + Math.abs(5 * diff.toDays());
+            f = "Fine : " + Math.abs(book_fine * diff.toDays());
         } else {
             f = "Fine : No Fine";
         }

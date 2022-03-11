@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -27,6 +28,7 @@ public class SearchLibraryActivity extends AppCompatActivity {
     private EditText searchText;
     private ImageButton searchButton;
     private RecyclerView libraryRV;
+    private ImageView noData;
 
     private String search = "";
 
@@ -40,6 +42,7 @@ public class SearchLibraryActivity extends AppCompatActivity {
         searchText = findViewById(R.id.search_text);
         searchButton = findViewById(R.id.search_button);
         libraryRV = findViewById(R.id.search_library_rv);
+        noData = findViewById(R.id.no_data);
 
         searchText.setText(search);
 
@@ -75,6 +78,13 @@ public class SearchLibraryActivity extends AppCompatActivity {
                     intent.putExtra("libraryID", model.getId());
                     startActivity(intent);
                 });
+            }
+
+            @NonNull
+            @Override
+            public Library getItem(int position) {
+                if (position >= 0) noData.setVisibility(View.GONE);
+                return super.getItem(position);
             }
 
             @NonNull

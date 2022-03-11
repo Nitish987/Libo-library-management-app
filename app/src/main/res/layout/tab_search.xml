@@ -60,6 +60,14 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/no_data"
+            android:layout_width="150dp"
+            android:layout_height="140dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/empty"
+            android:visibility="gone"/>
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_Library"
             android:layout_width="wrap_content"
